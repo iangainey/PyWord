@@ -45,9 +45,6 @@ class word_bank:
         output = ""
         for index, letter in enumerate(guess):
         #Check if letter is in word
-        #print(letter)
-        #print(guessLibrary.index(letter))
-        #print(len(guessRecord))
             if (word.count(letter)):
             #If letter is in word, check if in correct place
                 if (word[index] == letter):
