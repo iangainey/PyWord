@@ -1,9 +1,10 @@
+
 class hall_of_fame:
 
     def __init__(self) -> None:
         pass
 
-    def __load_HOF(self) -> list:
+    def load_HOF(self) -> list:
         #Loads hall of fame, returns as a list with each element containing [score][name]
         lines = ""
         with open("hall_of_fame.txt") as file:
@@ -26,7 +27,7 @@ class hall_of_fame:
         #Called to determine if an entry can be placed in hall of fame. 
         #Calls update_HOF() and returns true if so, otherwise returns false
 
-        hof = self.__load_HOF()
+        hof = self.load_HOF()
 
         if not hof:
             #If hof is currently empty, add entry to index 0
@@ -96,19 +97,4 @@ class hall_of_fame:
         
         with open('hall_of_fame.txt', 'w') as file:
             file.writelines(newHOF)
-
-    def print_HOF(self):
-        #Calls load_HOF(), prints it out
-        print("")
-        print("--- Hall of Fame ---")
-        print(" ## : Score : Player")
-
-        hof = self.__load_HOF()
-        lineNum = 1
-        #prevScore = 0
-        for line in hof:
-            #If score from last round same as current score, same num
-            print(f"{lineNum:>3} : ", end = '')
-            print(f" {line[0]:>4} : ", end ='')
-            print(f"{line[1]}")
-            lineNum += 1
+        

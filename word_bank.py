@@ -1,4 +1,5 @@
 import random
+import pyword_game as gm
 
 class word_bank:
 
@@ -34,7 +35,8 @@ class word_bank:
 
         return gameWords 
 
-    def compare_words(self, guess, word, guessLibrary, guessRecord):
+    #def compare_words(self, guess, word, guessLibrary, guessRecord):
+    def compare_words(self, guess, word):
         #Compares a guess to the current secret word. Returns indication of letter correctness,
         #as well as updating guess library
 
@@ -50,15 +52,46 @@ class word_bank:
                 if (word[index] == letter):
                     #If letter is in word and in correct place, !
                     output += "!"
-                    guessRecord[(guessLibrary.index(letter))] = "!"
+                    #guessRecord[(guessLibrary.index(letter))] = "!"
                 else:
                     #Letter is in word, not in right place
                     output += "?"
-                    if (guessRecord[(guessLibrary.index(letter))] != "!"):
-                        guessRecord[(guessLibrary.index(letter))] = "?"
             else:
                 #Letter is not in word
                 output += "X"
-                guessRecord[(guessLibrary.index(letter))] = "X"
 
-        return output, guessRecord
+        #Before returning, need to check if there are duplicates 
+        #i.e. a letter marked correct in one spot, and the same letter guessed in another spot marked yellow even when there's only 1 in word
+        
+        #Check if there are more than 1 instance of a letter in guess
+        for letter in guess:
+            if guess.count(letter) > 1:
+                #More than 1 instance of letter in guess
+                #Check if there is more than 1 in word
+                if word.count(letter) > 1:
+                    #There is more than 1 in word and more than 1 in guess, probably marked correctly
+                    pass
+                else:
+                    #Not more than 1 in word, one was probably marked incorrectly
+
+                    #Find if one was marked as "!", if so find the other and mark as "X"
+                    foundFirst = False
+                    for index, l in enumerate(guess):
+                        if (l == letter):
+                            #Find what it's marked as in output
+                            if (output[index] != "!"):
+                                #If it's not marked as correct in output, mark as X
+                                output = output[:index] + "X" + output[index+1:]
+                            #Find if both were marked as "?", if so find the 2nd one and mark as "X"
+                            elif (output[index] == "?"):
+                                if (foundFirst):
+                                    #This is a duplicate
+                                    output = output[:index] + "X" + output[index+1:]
+                                else:
+                                    foundFirst == True
+            else:
+                #Not more than 1, so disregard
+                pass
+
+        #return output
+        return output
