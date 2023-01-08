@@ -282,12 +282,20 @@ class GUI:
             clickKey = ""
             clickKey = self.window.checkKey()
             if clickKey != "":
+                #Our key list has these differences from what checkKey()
+                #returns. Check if it's those. If it is, return our key list version 
+                #of it. Otherwise, keep looping
                 if clickKey == "Return":
                     return "Enter"
                 elif clickKey == "BackSpace":
                     return "Back"
-                else:
-                    return clickKey.upper()
+                
+                clickKey = clickKey.upper()
+                if self.keyboard.count(clickKey):
+                    #It is a key in our available key list
+                    return clickKey
+                    
+                
 
     def __find_clicked(self, pointClicked):
         #Search dictionary to find which button was clicked
