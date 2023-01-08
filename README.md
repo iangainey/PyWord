@@ -2,12 +2,11 @@
 
 PyWord is a word game similar to Wordle or Jotto. Started as part of a Python course I took at Purdue, I expanded upon it after conclusion of the class
 
-![Image of PyWord](game_image.png =400x515)
-
 ## Table of Contents
 - [Background](#background)
 - [Installing](#installing)
-- [Using](#install)
+- [Using](#using)
+- [Screenshots](#screenshots)
 - [Sources](#sources)
 
 ## Background
@@ -39,6 +38,11 @@ Gray: Indicates that letter is not in the word
 
 As you complete each round, you earn points. Once a round ends, the next one immediately begins. Once all 3 rounds are completed, a screen showing the total of your points is displayed. It will also notify you if you got a score deserving of the hall of fame.
 
+## Screenshots
+
+<p align="center">
+<img src="game_image.png" width="60%" height="60%">
+</p>
 
 ## Sources:
 
