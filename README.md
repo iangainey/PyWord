@@ -19,15 +19,19 @@ To further develop PyWord, I added a Graphical User Interface and updated the wo
 ## Installing
 
 PyWord can be installed by downloading all of the files in the master branch.
-Once installed, navigate in a terminal to the directory that contains pyword.py. Once in that directory, use the "python" keyword corresponding to your system, followed by pyword.py
-For my system, I execute the command: 
-'''sh
-$ python pyword.py
-'''
-This will open a new window with the game running.
+PyWord depends on the graphics.py library. This can by installed through multiple methods. Using pip:
+```
+pip install graphics.py
+```
+For other methods, see the source for graphics.py in sources
 
 ## Using
-
+Once installed, navigate in a terminal to the directory that contains pyword.py. Once in that directory, use the "python" keyword corresponding to your system, followed by pyword.py
+For my system, I execute the command: 
+```
+$ python pyword.py
+```
+This will open a new window with the game running.
 With a PyWord window open, it presents menu options. You can either begin a new game, view the hall of fame, or quit.
 Playing the game is done by first starting a new game. You will be prompted to enter a name, and this will be used to store in the hall of fame.
 Once presented with a 5x6 grid and a keyboard, this is the game. 
@@ -47,3 +51,5 @@ As you complete each round, you earn points. Once a round ends, the next one imm
 ## Sources:
 
 Knuth, Donald. The Stanford GraphBase: A Platform for Combinatorial Computing. New York: ACM Press, 1994. <http://www-cs-faculty.stanford.edu/~knuth/sgb.html>
+
+Zelle, J. Mcsp.wartburg.edu. graphics.py, Simple object oriented graphics library. Retrieved January 4, 2023, from https://mcsp.wartburg.edu/zelle/python/graphics.py 
