@@ -33,15 +33,12 @@ class GUI:
         self.all_guess_letters = [] #Stores all guess letters in current round
         self.guess_Grid = [] #Stores guess grid objects to be filled depending on guesses
 
-        #State 1: Main Menu
-        #State 2: Hall of Fame, includes Main Menu display
-        #State 3: Player Name Entry
-        #State 4: In Game
         self.state = State()
         
         self.hof_Objects = []
         self.menu_Objects = []
         self.name_Objects = []
+
     #Round drawing methods
     def draw_round(self):
         #Sets the game state
@@ -56,7 +53,6 @@ class GUI:
         self.__reset_keyboard()
 
     def undraw(self, choice):
-
         if choice == "New Game":
             for obj in self.menu_Objects:
                 obj.undraw()
@@ -173,8 +169,9 @@ class GUI:
         key = self.keys[self.keyboard.index(letter)]
         #If the key is not colored lime green, can change color. Don't want to change if it's already lime green
         if key.color != "lime green":
-            key.keyObj.setFill(color)
-            key.color = color
+            if color == "light gray" and key.color != "khaki":
+                key.keyObj.setFill(color)
+                key.color = color
     
     def __reset_keyboard(self):
         #Called between rounds to clear coloring on keyboard
@@ -243,7 +240,6 @@ class GUI:
         text.draw(self.window)
         self.guess_Letters.append(text)
     
-
     def undraw_guess_letter(self):
         #Undraws the most recent letter guessed
         if len(self.guess_Letters) > 0:
@@ -279,7 +275,7 @@ class GUI:
                 button = self.__find_clicked(clickPoint)
                 if button is not None:
                     return button
-            clickKey = ""
+
             clickKey = self.window.checkKey()
             if clickKey != "":
                 #Our key list has these differences from what checkKey()
@@ -295,11 +291,8 @@ class GUI:
                     #It is a key in our available key list
                     return clickKey
                     
-                
-
     def __find_clicked(self, pointClicked):
         #Search dictionary to find which button was clicked
-
         buttonList = []
         pointList = []
         if (self.state.getState() == self.state.mainMenu):
@@ -336,7 +329,6 @@ class GUI:
             if ((pointClicked.getX() > ulX and pointClicked.getX() < lrX) and (pointClicked.getY() > ulY and pointClicked.getY() < lrY)):
                 #Return the key(button) corresponding to current value 
                 return buttonList[pointList.index(value)]
-
         #If never found the point clicked, don't do anything
             
     #Main Menu Methods
@@ -346,11 +338,7 @@ class GUI:
         return(self.get_selection())
 
     def __draw_main_menu(self) -> None:
-
-        x1 = 100
-        x2 = 600
-        y1 = 100
-        y2 = 200
+        x1, x2, y1, y2 = 100, 600, 100, 200
         self.__draw_menu_button(x1, x2, y1, y2, "New Game")
         y1 += 125
         y2 += 125
