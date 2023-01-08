@@ -1,8 +1,8 @@
-# Standard Readme Stle _(PyWord)_
+# PyWord
 
 PyWord is a word game similar to Wordle or Jotto. Started as part of a Python course I took at Purdue, I expanded upon it after conclusion of the class
 
-![Image of PyWord](game_image.png | width = 400)
+![Image of PyWord](game_image.png =400x515)
 
 ## Table of Contents
 - [Background](#background)
