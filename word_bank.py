@@ -1,5 +1,4 @@
 import random
-import pyword_game as gm
 
 class word_bank:
 
@@ -23,7 +22,6 @@ class word_bank:
 
     def pick_game_words(self):
         #Picks 3 unique words from the bank. Return these words as a list
-        
         words = self.get_word_bank()
 
         gameWords = []
@@ -35,7 +33,6 @@ class word_bank:
 
         return gameWords 
 
-    #def compare_words(self, guess, word, guessLibrary, guessRecord):
     def compare_words(self, guess, word):
         #Compares a guess to the current secret word. Returns indication of letter correctness,
         #as well as updating guess library
@@ -52,7 +49,6 @@ class word_bank:
                 if (word[index] == letter):
                     #If letter is in word and in correct place, !
                     output += "!"
-                    #guessRecord[(guessLibrary.index(letter))] = "!"
                 else:
                     #Letter is in word, not in right place
                     output += "?"
@@ -76,22 +72,23 @@ class word_bank:
 
                     #Find if one was marked as "!", if so find the other and mark as "X"
                     foundFirst = False
+                    foundCorrect = False
+                    correctThisIndex = ""
                     for index, l in enumerate(guess):
                         if (l == letter):
                             #Find what it's marked as in output
                             if (output[index] != "!"):
-                                #If it's not marked as correct in output, mark as X
-                                output = output[:index] + "X" + output[index+1:]
-                            #Find if both were marked as "?", if so find the 2nd one and mark as "X"
-                            elif (output[index] == "?"):
-                                if (foundFirst):
-                                    #This is a duplicate
-                                    output = output[:index] + "X" + output[index+1:]
+                                if (output[index] == "?"):
+                                    if (foundFirst):
+                                        #This is a duplicate
+                                        output = output[:index] + "X" + output[index+1:]
+                                    else:
+                                        foundFirst == True
                                 else:
-                                    foundFirst == True
+                                    #If it's not marked as correct in output, mark as X
+                                    output = output[:index] + "X" + output[index+1:]
             else:
                 #Not more than 1, so disregard
                 pass
 
-        #return output
         return output

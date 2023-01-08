@@ -3,14 +3,6 @@ import hall_of_fame as HOF
 import word_bank as WB
 from gui.gui import GUI
 
-'''
-Current Objectives:
-
-1. Add key entering functionality, not just mouse clicking 
-
-2. Redo some features. Some can be grouped together/improved
-    A. 
-'''
 class pyword_game:
     
     def __init__(self) -> None:
@@ -24,7 +16,6 @@ class pyword_game:
         self.hofEntry = []
         self.guessLibrary = "abcdefghijklmnopqrstuvwxyz"
         self.window = GUI()
-
 
     def main_menu(self):
         #Prints out the main menu, gets user input for a choice, calls proper functions
@@ -71,6 +62,7 @@ class pyword_game:
         #Rounds are over, game is complete, undraw
         self.window.undraw("Game")
         
+        #Add to hofEntry to determine if score is hof worthy. If so, adds to hof
         self.hofEntry.append(str(self.score))
         self.hofEntry.append(self.name)
 
@@ -86,7 +78,6 @@ class pyword_game:
     
     def __play_round(self, secretWords):
         #Play one round. Only called by game(). Returns a score obtained in the round
-
         #Draw necessary setup each round
         if self.round == 1:
             self.window.draw_round()
