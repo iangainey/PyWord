@@ -108,7 +108,8 @@ class pyword_game:
                         break #Get to next row
         
         #If loop exits without returning points, correct word was never guessed
-        self.window.draw_game_text("You ran out of tries. Click to continue")
+        text = "You ran out of tries. The word was " + word.upper() + ". Click to continue"
+        self.window.draw_game_text(text)
         self.window.reset_round()
         points = 0
         return points
